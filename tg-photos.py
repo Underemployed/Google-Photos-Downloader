@@ -107,7 +107,7 @@ async def send_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         document=url,
                         filename=file_name,
                     ),
-                    timeout=30,  
+                    timeout=120,
                 )
                 print("Successful")
             except Exception as e:

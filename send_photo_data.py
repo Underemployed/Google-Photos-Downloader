@@ -11,6 +11,8 @@ def filter_photos(start_date, end_date):
     # # Convert input dates to datetime objects with timezone
     # start_date = datetime.strptime(start_date_str, "%Y-%m-%d").replace(tzinfo=pytz.UTC)
     # end_date = datetime.strptime(end_date_str, "%Y-%m-%d").replace(tzinfo=pytz.UTC)
+    if start_date > end_date:
+        start_date, end_date = end_date, start_date
     start_year, start_month, start_day = (
         start_date.year,
         start_date.month,
