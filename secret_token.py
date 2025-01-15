@@ -1,4 +1,7 @@
-CLIENT_SECRET_FILE = ''
-API_NAME = ''
-API_VERSION = ''
-SCOPES = []
+CLIENT_SECRET_FILE = 'secret-token.json'
+API_NAME = 'photoslibrary'
+API_VERSION = 'v1'
+SCOPES = [
+    'https://www.googleapis.com/auth/photoslibrary.readonly',
+    'https://www.googleapis.com/auth/photoslibrary'
+]
