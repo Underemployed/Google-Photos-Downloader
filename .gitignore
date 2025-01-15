@@ -3,3 +3,7 @@
 venv
 __pycache__
 secret_token.py
+env
+secret-token.json
+photos
+*.pickle
