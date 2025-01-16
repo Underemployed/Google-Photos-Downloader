@@ -112,18 +112,29 @@ class GooglePhotosDownloader:
 
     def _download_single_item(self, item):
         """Download a single media item"""
-        # Handle both formats by removing Z and milliseconds
         timestamp_str = item["mediaMetadata"]["creationTime"]
         timestamp_str = timestamp_str.replace('Z', '').split('.')[0]
         
         creation_time = datetime.strptime(timestamp_str, "%Y-%m-%dT%H:%M:%S")
         
+        # Get ordinal day
+        day_ordinal = str(creation_time.day)
+        if day_ordinal.endswith('1') and day_ordinal != '11':
+            day_ordinal += 'st'
+        elif day_ordinal.endswith('2') and day_ordinal != '12':
+            day_ordinal += 'nd'
+        elif day_ordinal.endswith('3') and day_ordinal != '13':
+            day_ordinal += 'rd'
+        else:
+            day_ordinal += 'th'
+        
         year = str(creation_time.year)
         month = self.months[creation_time.month]
         month_path = os.path.join(self.base_path, year, month)
         
-        timestamp = creation_time.strftime("%Y%m%d_%H%M%S")
-        filename = f"{timestamp}_{item['filename']}"
+        friendly_time = creation_time.strftime("%I_%M %p").lstrip('0')
+        friendly_date = f"{day_ordinal} {month.replace('01_', '')} {year} at {friendly_time}"
+        filename = f"{friendly_date}_{item['filename']}"
         file_path = os.path.join(month_path, filename)
         
         if os.path.exists(file_path):
