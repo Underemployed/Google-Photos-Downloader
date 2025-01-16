@@ -18,26 +18,55 @@ Downloads your entire Google Photos library while preserving original quality an
 - Create a new project or select an existing one.
 
 ### 2. Enable Google Photos API
-- Navigate to **"APIs & Services" > "Library"**.
-- Search for **"Photos Library API"**.
+- Search **"Enable APIs and Services" >  "+ Enabled APIs and Services+**.
+- Search for **"Google Photos Library API"**.
 - Click **"Enable"**.
+
 
 ### 3. Configure OAuth Consent Screen
 - Go to **"APIs & Services" > "OAuth consent screen"**.
 - Select **"External"** user type.
+- Enter Required fields
 - Fill in the required application information.
 - Add the following scopes:
-    - `https://www.googleapis.com/auth/photoslibrary.readonly`
     - `https://www.googleapis.com/auth/photoslibrary`
-- Add your Google account as a test user.
+- Add your Google account as a test user. (gmail in which your photos are stored)
 
 ### 4. Create OAuth 2.0 Credentials
-- Follow [Google's guide to set up access](https://support.google.com/googleapi/answer/6158849?hl=en&ref_topic=7013279).
-- Go to **"APIs & Services" > "Credentials"**.
+- You can follow [Google's guide to set up access](https://support.google.com/googleapi/answer/6158849?hl=en&ref_topic=7013279).
+- Go to **"Credentials"**.
 - Click **"Create Credentials" > "OAuth client ID"**.
 - Choose **"Desktop application"** as the application type.
 - Download the client configuration file.
 
-### 5. Setup Project Credentials
-- Rename the downloaded client configuration file to `secret-token.json`.
-- Place the file in the root directory of your project.
+### 5. Setup Project 
+- **Rename** the downloaded client configuration file to `secret-token.json` and save it to the project.
+
+### 6. Install Dependencies and Run
+
+#### For Linux:
+- Install the required Python packages:
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+- Run the application:
+    ```sh
+    python app.py
+    ```
+
+#### For Windows:
+- Install the required Python packages:
+    ```sh
+    pip install -r requirements.txt
+    ```
+- Set up the environment variables:
+
+- Run the application:
+    ```sh
+    python app.py
+    ```
+
+
+
+ 
