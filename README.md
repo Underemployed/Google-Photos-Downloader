@@ -16,7 +16,6 @@ Downloads your entire Google Photos library while preserving original quality an
 ### 1. Create a Google Cloud Project
 - Go to [Google Cloud Console](https://console.cloud.google.com/).
 - Create a new project or select an existing one.
-- Note your Project ID for later use.
 
 ### 2. Enable Google Photos API
 - Navigate to **"APIs & Services" > "Library"**.
