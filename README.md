@@ -6,7 +6,6 @@ Downloads your entire Google Photos library while preserving original quality an
 - Downloads all photos and videos from Google Photos
 - Organizes files by year and month (2024/January/etc)
 - Creates friendly filenames (1st January 2024_time_photo.jpg) 
-- Preserves photo metadata and descriptions
 - Tracks folder statistics (file count, total size)
 - Skips existing files automatically
 ---
