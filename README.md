@@ -1,7 +1,7 @@
-# Google Photos API Downloader
+# Google Photos Downloader
 
-Downloads your entire Google Photos library while preserving original quality and metadata.
-
+Downloads your entire Google Photos library while preserving original quality and file order.
+[![Watch the video](thumbnail.jpeg)](https://youtu.be/vt5fpE0bzSY)
 ## Key Features
 - Downloads all photos and videos from Google Photos
 - Organizes files by year and month (2024/January/etc)
