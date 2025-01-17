@@ -43,24 +43,10 @@ Downloads your entire Google Photos library while preserving original quality an
 
 ### 6. Install Dependencies and Run
 
-#### For Linux:
 - Install the required Python packages:
     ```sh
     pip install -r requirements.txt
     ```
-
-- Run the application:
-    ```sh
-    python app.py
-    ```
-
-#### For Windows:
-- Install the required Python packages:
-    ```sh
-    pip install -r requirements.txt
-    ```
-- Set up the environment variables:
-
 - Run the application:
     ```sh
     python app.py
