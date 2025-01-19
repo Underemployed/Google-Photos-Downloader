@@ -1,7 +1,7 @@
 # Google Photos Downloader
 
 
-Downloads your entire Google Photos library while preserving original quality and file order.
+Downloads your entire Google Photos library while preserving original metadata, quality and file order using python and the Google Photos API.
     <br> <br>
 
 <a href="https://www.youtube.com/watch?v=QQ49vPLM6nU" style="margin:1rem;border-radius:1rem;">
@@ -12,6 +12,7 @@ Downloads your entire Google Photos library while preserving original quality an
 
 ## Key Features
 - Downloads all photos and videos from Google Photos
+- Preserves original metadata (date, location, etc)
 - Organizes files by year and month (2024/January/etc)
 - Creates friendly filenames (1st January 2024_time_photo.jpg) 
 - Tracks folder statistics (file count, total size)
@@ -48,11 +49,12 @@ Downloads your entire Google Photos library while preserving original quality an
 - Click **"Create Credentials" > "OAuth client ID"**.
 - Choose **"Desktop application"** as the application type.
 - Download the client configuration file.
-
-### 5. Setup Project
 - **Rename** the downloaded client configuration file to `secret-token.json` and save it to the project directory.
 
+
 ### 6. Install Dependencies and Run
+- If Python is not installed, download and install it from [python.org](https://www.python.org/downloads/)
+
 - Install the required Python packages:
     <br> <br>
     ```sh
