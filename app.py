@@ -143,7 +143,8 @@ class GooglePhotosDownloader:
         
         base_url = item["baseUrl"]
         mime_type = item["mimeType"]
-        download_url = f"{base_url}=d" if "image" in mime_type else f"{base_url}=dv"
+        download_url = f"{base_url}=w{item['mediaMetadata']['width']}-h{item['mediaMetadata']['height']}-d" if "image" in mime_type else f"{base_url}=dv"
+
         
         print(f"Downloading: {filename}")
         response = requests.get(download_url)
