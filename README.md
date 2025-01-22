@@ -68,13 +68,9 @@ The Google Takeout file/folder structure has some interesting inconsistencies/qu
     ```
 - log in to your Google account, click continue and start downloading your Google Photos.
 
-### 6. Transfer to another account
 - If you want to transfer it to another account
-- Install the required Python packages:
-    <br> <br>
-    ```sh
-    pip install -r requirements.txt
-    ```
+You will lose some metadata, but you will be able to transfer all your photos and videos to another account.
+
 - Run the application:
     <br> <br>
     ```sh

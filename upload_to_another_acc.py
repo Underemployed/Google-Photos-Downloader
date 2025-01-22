@@ -44,6 +44,7 @@ def upload_media():
             for item in month_dir.glob('*.*'):
                 if (item.suffix.lower() not in SUPPORTED_EXTENSIONS or 
                     str(item) in uploaded_files):
+                    print(f'Skipping {item}')
                     continue
                 
                 print(f'Processing {item}')
