@@ -2,10 +2,11 @@
 
 
 Downloads your entire Google Photos library while preserving original metadata, quality and file order using python and the Google Photos API.
+The Google Takeout file/folder structure has some interesting inconsistencies/quirks which make it tricky to work with. i created this script for my personal use.
     <br> <br>
 
 <a href="https://www.youtube.com/watch?v=QQ49vPLM6nU" style="margin:1rem;border-radius:1rem;">
-    <img src="thumbnail.jpeg" alt="Watch the video" width="800">
+    <img src="img/thumbnail.jpeg" alt="Watch the video" width="800">
 </a>
 
 
@@ -13,7 +14,7 @@ Downloads your entire Google Photos library while preserving original metadata, 
 ## Key Features
 - Downloads all photos and videos from Google Photos
 - Preserves original metadata (date, location, etc)
-- Organizes files by year and month (2024/January/etc)
+- Organizes files by year and month (2024/01_January/etc)
 - Creates friendly filenames (1st January 2024_time_photo.jpg) 
 - Tracks folder statistics (file count, total size)
 - Skips existing files automatically
@@ -67,8 +68,28 @@ Downloads your entire Google Photos library while preserving original metadata, 
     ```
 - log in to your Google account, click continue and start downloading your Google Photos.
 
+### 6. Transfer to another account
+- If you want to transfer it to another account
+- Install the required Python packages:
+    <br> <br>
+    ```sh
+    pip install -r requirements.txt
+    ```
+- Run the application:
+    <br> <br>
+    ```sh
+    python upload_to_another_acc.py
+    ```
 
 
 
-Tags
+## Disclaimer
 
+This tool was only written for the purpose of solving my own personal requirements.
+
+I decided to make this public on GitHub because:
+
+- It was useful for me, so maybe it'll be useful for others in the future.
+- Future me might be thankful if I ever need to do this again.
+
+With that said, please bear in mind that this tool won't be actively maintained and your mileage may vary. I'm sure it's far from perfect so if you choose to use it please proceed with caution and be careful to verify the results! I hope it's helpful.
