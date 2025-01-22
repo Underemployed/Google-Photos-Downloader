@@ -15,10 +15,10 @@ class GooglePhotosDownloader:
         Path(self.metadata_path).mkdir(exist_ok=True)
         
         self.months = {
-            1: "January", 2: "February", 3: "March",
-            4: "April", 5: "May", 6: "June",
-            7: "July", 8: "August", 9: "September",
-            10: "October", 11: "November", 12: "December"
+            1: "01-Jan", 2: "02-Feb", 3: "03-Mar",
+            4: "04-Apr", 5: "05-May", 6: "06-Jun",
+            7: "07-July", 8: "08-Aug", 9: "09-Sept",
+            10: "10-Oct", 11: "11-Nov", 12: "12-Dec"
         }
 
     def fetch_and_save_metadata(self):
@@ -133,7 +133,7 @@ class GooglePhotosDownloader:
         month_path = os.path.join(self.base_path, year, month)
         
         friendly_time = creation_time.strftime("%I-%M %p").lstrip('0')
-        friendly_date = f"{day_ordinal} {month.replace('01_', '')} {year} at {friendly_time}"
+        friendly_date = f"{day_ordinal} {month.split("_")[1]} {year} at {friendly_time}"
         filename = f"{friendly_date}_{item['filename']}"
         file_path = os.path.join(month_path, filename)
         
@@ -145,7 +145,8 @@ class GooglePhotosDownloader:
         mime_type = item["mimeType"]
 
         download_url = f"{base_url}=d" if "image" in mime_type else f"{base_url}=dv"
-        print(f"Download URL: {download_url}")
+        
+        # print(f"Download URL: {download_url}")
         
         print(f"Downloading: {filename}")
         response = requests.get(download_url)
