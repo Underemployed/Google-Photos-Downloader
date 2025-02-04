@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 import requests
 from pathlib import Path
+import filedate
 import pickle
 
 from concurrent.futures import ThreadPoolExecutor
@@ -85,21 +86,21 @@ class GooglePhotosDownloader:
             "id": item["id"],
             "description": item.get("description", ""),
             "creationTime": item["mediaMetadata"]["creationTime"],
+            "modificationTime": item["mediaMetadata"].get("modificationTime",None), 
             "width": item["mediaMetadata"].get("width", ""),
             "height": item["mediaMetadata"].get("height", ""),
             "mimeType": item["mimeType"],
             "baseUrl": item["baseUrl"],
             "filename": item["filename"]
         }
+
         
         metadata_file = os.path.join(self.metadata_path, f"{item['id']}.json")
         with open(metadata_file, "w") as f:
             json.dump(metadata, f, indent=2)
 
-
-
-    def download_all_media(self, max_threads=4):  
-        """Download all media files using saved metadata with multiple threads"""
+    def download_all_media(self, max_threads=4, use_threading=True):  
+        """Download all media files using saved metadata"""
         if not os.path.exists(self.cache_file):
             print("No cached metadata found. Run fetch_and_save_metadata first.")
             return
@@ -119,9 +120,14 @@ class GooglePhotosDownloader:
             except Exception as e:
                 print(f"Error downloading {item.get('filename', 'unknown')}: {str(e)}")
         
-        with ThreadPoolExecutor(max_workers=max_threads) as executor:
-            executor.map(download_with_progress, items)
-
+        if use_threading:
+            with ThreadPoolExecutor(max_workers=max_threads) as executor:
+                executor.map(download_with_progress, items)
+        else:
+            for item in items:
+                download_with_progress(item)
+ 
+    
 
     def _download_single_item(self, item):
         """Download a single media item"""
@@ -177,6 +183,11 @@ class GooglePhotosDownloader:
             
             with open(folder_info_path, "w") as f:
                 json.dump(folder_info, f, indent=2)
+
+            filedate.File(file_path).set(
+                created = creation_time,
+                modified = creation_time,
+            )
         else:
             print(f"Failed to download {filename}")
 
