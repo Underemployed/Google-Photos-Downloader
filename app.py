@@ -133,7 +133,7 @@ class GooglePhotosDownloader:
         month_path = os.path.join(self.base_path, year, month)
         
         friendly_time = creation_time.strftime("%I-%M %p").lstrip('0')
-        friendly_date = f"{day_ordinal} {month.split("_")[1]} {year} at {friendly_time}"
+        friendly_date = f"{day_ordinal} {month.split("-")[1]} {year} at {friendly_time}"
         filename = f"{friendly_date}_{item['filename']}"
         file_path = os.path.join(month_path, filename)
         
