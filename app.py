@@ -1,10 +1,14 @@
 from init_photo_service import service
+import multiprocessing
 import os
 import json
 from datetime import datetime
 import requests
 from pathlib import Path
 import pickle
+
+from concurrent.futures import ThreadPoolExecutor
+
 
 class GooglePhotosDownloader:
     def __init__(self):
@@ -92,8 +96,10 @@ class GooglePhotosDownloader:
         with open(metadata_file, "w") as f:
             json.dump(metadata, f, indent=2)
 
-    def download_all_media(self):
-        """Download all media files using saved metadata"""
+
+
+    def download_all_media(self, max_threads=4):  
+        """Download all media files using saved metadata with multiple threads"""
         if not os.path.exists(self.cache_file):
             print("No cached metadata found. Run fetch_and_save_metadata first.")
             return
@@ -102,13 +108,20 @@ class GooglePhotosDownloader:
             items = pickle.load(f)
         
         total = len(items)
-        for index, item in enumerate(items, 1):
+        completed = 0
+        
+        def download_with_progress(item):
+            nonlocal completed
             try:
                 self._download_single_item(item)
-                print(f"Progress: {index}/{total} items processed")
+                completed += 1
+                print(f"Progress: {completed}/{total} items processed")
             except Exception as e:
                 print(f"Error downloading {item.get('filename', 'unknown')}: {str(e)}")
-                continue
+        
+        with ThreadPoolExecutor(max_workers=max_threads) as executor:
+            executor.map(download_with_progress, items)
+
 
     def _download_single_item(self, item):
         """Download a single media item"""
@@ -133,7 +146,7 @@ class GooglePhotosDownloader:
         month_path = os.path.join(self.base_path, year, month)
         
         friendly_time = creation_time.strftime("%I-%M %p").lstrip('0')
-        friendly_date = f"{day_ordinal} {month.split("-")[1]} {year} at {friendly_time}"
+        friendly_date = f"{day_ordinal} {month[3:]} {year} at {friendly_time}"
         filename = f"{friendly_date}_{item['filename']}"
         file_path = os.path.join(month_path, filename)
         
@@ -167,18 +180,21 @@ class GooglePhotosDownloader:
         else:
             print(f"Failed to download {filename}")
 
+
 def main():
     downloader = GooglePhotosDownloader()
     
-    # Step 1: Fetch and save metadata
+    cpu_count = multiprocessing.cpu_count()
+    recommended_threads = max(1, cpu_count // 2)    
+    
     print("Step 1: Fetching and saving metadata...")
     total_items = downloader.fetch_and_save_metadata()
     print(f"Metadata saved for {total_items} items")
-    
-    # Step 2: Download media files
-    print("\nStep 2: Downloading media files...")
-    downloader.download_all_media()
+
+    print(f"\nStep 2: Downloading media files using {recommended_threads} threads...")
+    downloader.download_all_media(max_threads=recommended_threads)
     print("Download complete!")
+
 
 if __name__ == "__main__":
     main()
