@@ -6,4 +6,4 @@ secret_token.py
 env
 secret-token.json
 photos*
-*.pickle
+

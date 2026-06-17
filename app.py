@@ -71,6 +71,7 @@ class GooglePhotosDownloader:
         Path(year_path).mkdir(exist_ok=True)
         Path(month_path).mkdir(exist_ok=True)
         
+
         # Save folder metadata for tracking downloads
         folder_metadata = {
             "year": year,
@@ -80,6 +81,7 @@ class GooglePhotosDownloader:
         }
         with open(os.path.join(month_path, "folder_info.json"), "w") as f:
             json.dump(folder_metadata, f, indent=2)
+        
         
         # Save item metadata
         metadata = {
@@ -98,6 +100,7 @@ class GooglePhotosDownloader:
         metadata_file = os.path.join(self.metadata_path, f"{item['id']}.json")
         with open(metadata_file, "w") as f:
             json.dump(metadata, f, indent=2)
+        
 
     def download_all_media(self, max_threads=4, use_threading=True):  
         """Download all media files using saved metadata"""

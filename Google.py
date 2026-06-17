@@ -17,12 +17,13 @@ def Create_Service(client_secret_file, api_name, api_version, *scopes):
 
     cred = None
 
-    pickle_file = f"token_{API_SERVICE_NAME}_{API_VERSION}.pickle"
+    # pickle_file = f"token_{API_SERVICE_NAME}_{API_VERSION}.pickle"
+    pickle_file = f"login_cred_deleteforlogout.pickle"
     # print(pickle_file)
 
-    # if os.path.exists(pickle_file):
-    #     with open(pickle_file, "rb") as token:
-    #         cred = pickle.load(token)
+    if os.path.exists(pickle_file):
+        with open(pickle_file, "rb") as token:
+            cred = pickle.load(token)
 
     if not cred or not cred.valid:
         if cred and cred.expired and cred.refresh_token:
@@ -31,9 +32,9 @@ def Create_Service(client_secret_file, api_name, api_version, *scopes):
             flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
             cred = flow.run_local_server()
 
-        # with open(pickle_file, "wb") as token:
-        #     pickle.dump(cred, token)
-        #     print(token)
+        with open(pickle_file, "wb") as token:
+            pickle.dump(cred, token)
+            print(token)
 
     try:
         service = build(api_name, api_version, credentials=cred, static_discovery=False)
@@ -42,7 +43,7 @@ def Create_Service(client_secret_file, api_name, api_version, *scopes):
     except Exception as e:
         print("Unable to connect.")
         print(e)
-        return None
+        return None 
 
 
 def convert_to_RFC_datetime(year=1900, month=1, day=1, hour=0, minute=0):

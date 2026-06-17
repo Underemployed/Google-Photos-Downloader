@@ -31,41 +31,50 @@ The Google Takeout file/folder structure has some interesting inconsistencies/qu
 - Click **"Enable"**.
 
 ### 3. Configure OAuth Consent Screen
-- Go to **"APIs & Services" > "OAuth consent screen"**.
+- Go to **"APIs & Services" > "OAuth consent screen" > "Clients" > "+Create Client" > "Desktop App" **.
 - Select **"External"** user type.
 - Enter the required fields.
 - Fill in the required application information.
+- Go to Data Acesss,
 - Add the following scope:
     <br> <br>
-
   ```
   https://www.googleapis.com/auth/photoslibrary
   ```
-     
+- Go to "audience" and scroll down. 
 - Add your Google account as a test user (the Gmail account in which your photos are stored).
+- Only added accounts will work with the script.
 
 ### 4. Create OAuth 2.0 Credentials
-- Follow [Google's guide to set up access](https://support.google.com/googleapi/answer/6158849?hl=en&ref_topic=7013279).
+- Follow [Google's guide to set up access ](https://support.google.com/cloud/answer/15549257?sjid=11046833352039128239-NC#zippy=%2Cnative-applications-android-ios-desktop-uwp-chrome-extensions-tv-and-limited-input).
 - Go to **"Credentials"**.
 - Click **"Create Credentials" > "OAuth client ID"**.
 - Choose **"Desktop application"** as the application type.
 - Download the client configuration file.
 - **Rename** the downloaded client configuration file to `secret-token.json` and save it to the project directory.
 
-
 ### 6. Install Dependencies and Run
-- If Python is not installed, download and install it from [python.org](https://www.python.org/downloads/)
 
-- Install the required Python packages:
-    <br> <br>
-    ```sh
-    pip install -r requirements.txt
-    ```
-- Run the application:
-    <br> <br>
-    ```sh
-    python app.py
-    ```
+* If Python is not installed, download and install it from [python.org](https://www.python.org/downloads/).
+* Run the following commands in your terminal. The inline comments explain what each step does:
+
+```sh
+# Create a virtual environment (run this only once)
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows:
+venv\Scripts\activate
+# On Linux/macOS:
+source venv/bin/activate
+
+# Install the required dependencies
+pip install -r requirements.txt
+
+# Run the application
+python app.py
+# Thank you for using my app. Pls give feedback.
+```
 - log in to your Google account, click continue and start downloading your Google Photos.
 
 - If you want to transfer it to another account
