@@ -5,7 +5,7 @@ Downloads your entire Google Photos library while preserving original metadata, 
 The Google Takeout file/folder structure has some interesting inconsistencies/quirks which make it tricky to work with. i created this script for my personal use.
     <br> <br>
 
-<a href="https://www.youtube.com/watch?v=QQ49vPLM6nU" style="margin:1rem;border-radius:1rem;">
+<a href="https://www.youtube.com/watch?v=QQ49vPLM6nU" style="margin:1rem;border-radius:1rem;" target="_blank" rel="noopener noreferrer">
     <img src="img/thumbnail.jpeg" alt="Watch the video" width="800">
 </a>
 
@@ -21,16 +21,30 @@ The Google Takeout file/folder structure has some interesting inconsistencies/qu
 ## Setting Up Google Photos API Access
 
 ### 1. Create a Google Cloud Project
-- Go to [Google Cloud Console](https://console.cloud.google.com/).
-- Create a new project or select an existing one.
+-  Googles guide is there inside this -  [Google's guide to set up access ](https://support.google.com/cloud/answer/15549257?sjid=11046833352039128239-NC#zippy=%2Cnative-applications-android-ios-desktop-uwp-chrome-extensions-tv-and-limited-input).
 
+- Go to <a href="https://console.cloud.google.com/" target="_blank" rel="noopener noreferrer">
+   Google Cloud Console
+</a>
+
+- Create a new project or select an existing one.
 ### 2. Enable Google Photos API
+
+- Go to API & Services > + Enabled API & Services
+
 - Search for **"Enable APIs and Services"**.
 - Click on **"+ ENABLE APIS AND SERVICES"**.
 - Search for **"Google Photos Library API"**.
 - Click **"Enable"**.
 
+
+
+
+
+
 ### 3. Configure OAuth Consent Screen
+- Now go to this and https://console.cloud.google.com/auth/clients
+
 - Go to **"APIs & Services" > "OAuth consent screen" > "Clients" > "+Create Client" > "Desktop App" **.
 - Select **"External"** user type.
 - Enter the required fields.
@@ -70,10 +84,11 @@ source venv/bin/activate
 
 # Install the required dependencies
 pip install -r requirements.txt
-
-# Run the application
+```
+- Run the application
+```sh
 python app.py
-# Thank you for using my app. Pls give feedback.
+# Thank you for using my app.
 ```
 - log in to your Google account, click continue and start downloading your Google Photos.
 
