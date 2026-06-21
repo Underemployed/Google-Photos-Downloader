@@ -18,54 +18,46 @@ The Google Takeout file/folder structure has some interesting inconsistencies/qu
 - Creates friendly filenames (1st January 2024_time_photo.jpg) 
 - Tracks folder statistics (file count, total size)
 - Skips existing files automatically
+
+
 ## Setting Up Google Photos API Access
 
 ### 1. Create a Google Cloud Project
--  Googles guide is there inside this -  [Google's guide to set up access ](https://support.google.com/cloud/answer/15549257?sjid=11046833352039128239-NC#zippy=%2Cnative-applications-android-ios-desktop-uwp-chrome-extensions-tv-and-limited-input).
-
-- Go to <a href="https://console.cloud.google.com/" target="_blank" rel="noopener noreferrer">
-   Google Cloud Console
-</a>
-
+- Go to the [Google Cloud Console](https://console.cloud.google.com/).
 - Create a new project or select an existing one.
+- *For official configuration guidance, consult [Google's Guide to Setting Up Access](https://support.google.com/cloud/answer/15549257).*
+
 ### 2. Enable Google Photos API
-
-- Go to API & Services > + Enabled API & Services
-
-- Search for **"Enable APIs and Services"**.
+- Go to **APIs & Services**.
 - Click on **"+ ENABLE APIS AND SERVICES"**.
 - Search for **"Google Photos Library API"**.
 - Click **"Enable"**.
 
+### 3. Create OAuth 2.0 Credentials
+- Search for **"Credentials"**.
+- Select `User Data`> `Next`
+- Give suitable name for the app such as `Photos Exporter`.
+- Select user support email as your email.
+- Scroll down and add your email as the `Developer Contact Information` > `Save and Continue`
 
+### 4. Add Scopes
 
+- Click add scope
+- Now copy and paste this into the scope into Filter
+```sh
+https://www.googleapis.com/auth/photoslibrary
+```
+- Click the check box and add the scope
+- Click Update
 
+### 5. Oauth Client ID
 
+- Select Desktop App in the application type.
+- Leave the Name as is.
+- Click create. It may take 5 mins to work.
+- Download credentials and move it into the project directory.
+- Click done.
 
-### 3. Configure OAuth Consent Screen
-- Now go to this and https://console.cloud.google.com/auth/clients
-
-- Go to **"APIs & Services" > "OAuth consent screen" > "Clients" > "+Create Client" > "Desktop App" **.
-- Select **"External"** user type.
-- Enter the required fields.
-- Fill in the required application information.
-- Go to Data Acesss,
-- Add the following scope:
-    <br> <br>
-  ```
-  https://www.googleapis.com/auth/photoslibrary
-  ```
-- Go to "audience" and scroll down. 
-- Add your Google account as a test user (the Gmail account in which your photos are stored).
-- Only added accounts will work with the script.
-
-### 4. Create OAuth 2.0 Credentials
-- Follow [Google's guide to set up access ](https://support.google.com/cloud/answer/15549257?sjid=11046833352039128239-NC#zippy=%2Cnative-applications-android-ios-desktop-uwp-chrome-extensions-tv-and-limited-input).
-- Go to **"Credentials"**.
-- Click **"Create Credentials" > "OAuth client ID"**.
-- Choose **"Desktop application"** as the application type.
-- Download the client configuration file.
-- **Rename** the downloaded client configuration file to `secret-token.json` and save it to the project directory.
 
 ### 6. Install Dependencies and Run
 
@@ -100,6 +92,8 @@ You will lose some metadata, but you will be able to transfer all your photos an
     ```sh
     python upload_to_another_acc.py
     ```
+
+
 
 
 
