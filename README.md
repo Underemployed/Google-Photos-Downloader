@@ -55,13 +55,26 @@ https://www.googleapis.com/auth/photoslibrary
 - Select Desktop App in the application type.
 - Leave the Name as is.
 - Click create. It may take 5 mins to work.
-- Download credentials and move it into the project directory.
 - Click done.
 
+## 7. Setting Up Test Users
 
-### 6. Install Dependencies and Run
+- Here you should add your account from which you want to download the photos.
+- And the account to which you would want to transfer photos.
+- **Oauth Consent Screen > Audience**
+- Scroll down and add test users.
+- Add the gmails of whoever you want to access the script and click save.
+- Now go to clients in the sidebar
+
+
+##  Install Dependencies and Run
+
+* Now Open Up the project directory. If you want to download click on the Green Code btn download and extract https://github.com/Underemployed/Google-Photos-Downloader.git
+
+*  Move the downloaded `client_secre_12342.json` to the root of project directory.
 
 * If Python is not installed, download and install it from [python.org](https://www.python.org/downloads/).
+
 * Run the following commands in your terminal. The inline comments explain what each step does:
 
 ```sh
@@ -71,6 +84,7 @@ python -m venv venv
 # Activate the virtual environment
 # On Windows:
 venv\Scripts\activate
+
 # On Linux/macOS:
 source venv/bin/activate
 
@@ -82,7 +96,9 @@ pip install -r requirements.txt
 python app.py
 # Thank you for using my app.
 ```
-- log in to your Google account, click continue and start downloading your Google Photos.
+- `log in` to your Google account, click `continue` and start downloading your Google Photos.
+
+- Go back to the terminal and watch as your photos get transfer.
 
 - If you want to transfer it to another account
 You will lose some metadata, but you will be able to transfer all your photos and videos to another account.
